@@ -28,6 +28,18 @@ class LinkedList {
     this.length++;
   }
 
+  prepend(value) {
+    let node = new Node(value);
+    if (!this.head && !this.tail) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.value = value;
+      node.next = this.head;
+    }
+    this.length++;
+  }
+
   size() {
     return this.length;
   }
@@ -56,6 +68,26 @@ class LinkedList {
         break;
       } else {
         return false;
+      }
+    }
+    previousNode.next = node.next;
+    let temp = node.value;
+    node = null;
+    return temp;
+  }
+
+  removeAt(index) {
+    if (!this.head) return undefined;
+    if (index === 0) return this.head;
+
+    let node = this.head;
+    let previousNode;
+    for (let i = 0; i < index - 1; i++) {
+      if (node) {
+        previousNode = node;
+        node = node.next;
+      } else {
+        return undefined;
       }
     }
     previousNode.next = node.next;
