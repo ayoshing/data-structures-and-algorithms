@@ -1,6 +1,4 @@
-// linked list is a linear collection of data elements, order is not given by their physical placement in memory.
-// every linked list Node points to a null
-// null by itself is a valid linked list
+// A linked list is a linear data structure, where the collection of data are not stored contiguously. A linked list is essential a giant nested object, where each object is a node the stores a value and a pointer that points to the next node. A linked list provides linear time O(n) access and search. Insertion and deletion are constant O(1).
 
 class Node {
   constructor(value, next = null) {
@@ -36,6 +34,7 @@ class LinkedList {
     } else {
       node.value = value;
       node.next = this.head;
+      this.head = node;
     }
     this.length++;
   }
@@ -44,11 +43,15 @@ class LinkedList {
     return this.length;
   }
 
-  contains(value) {
+  find(value) {
     let node = this.head;
     while (node) {
+      if (typeof value === "function" && value(node.value)) {
+        return node;
+      }
+
       if (node.value === value) {
-        return true;
+        return node;
       }
       node = node.next;
     }
@@ -96,3 +99,5 @@ class LinkedList {
     return temp;
   }
 }
+
+export default LinkedList;
