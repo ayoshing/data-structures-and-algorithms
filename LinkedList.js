@@ -60,23 +60,27 @@ class LinkedList {
 
   remove(value) {
     let node = this.head;
-    let previousNode;
+    let current;
     while (node) {
-      if (node.value === value) {
-        previousNode = this.head;
-        this.head = node.next;
-      } else if (node.next.value === value) {
-        previousNode = node;
+      if (typeof value === "function" && value(node.value)) {
+        this.head = this.head.next;
+        return node;
+      } else if (typeof value === "function" && value(node.next.value)) {
+        current = node;
         node = node.next;
         break;
-      } else {
-        return false;
+      } else if (node.value === value) {
+        this.head = this.head.next;
+        return node;
+      } else if (node.next.value === value) {
+        current = node;
+        node = node.next;
+        break;
       }
     }
-    previousNode.next = node.next;
-    let temp = node.value;
-    node = null;
-    return temp;
+    current.next = node.next;
+    this.length--
+    return node;
   }
 
   removeAt(index) {
@@ -84,18 +88,19 @@ class LinkedList {
     if (index === 0) return this.head;
 
     let node = this.head;
-    let previousNode;
+    let current;
     for (let i = 0; i < index - 1; i++) {
       if (node) {
-        previousNode = node;
+        current = node;
         node = node.next;
       } else {
         return undefined;
       }
     }
-    previousNode.next = node.next;
+    current.next = node.next;
     let temp = node.value;
     node = null;
+    this.length--
     return temp;
   }
 }
