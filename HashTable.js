@@ -33,13 +33,25 @@ class HashTable {
   get(key) {
     let keyHash = this.hash(key);
     let bucketLinkedList = this.buckets[keyHash];
-    return bucketLinkedList.find(nodeValue => nodeValue.key === key).value.value;
+    let node = bucketLinkedList.find(nodeValue => nodeValue.key === key)
+    if(node) {
+      return node.value.value
+    } else {
+      return node
+    }
   }
 
   delete(key) {
     let keyHash = this.hash(key);
     let bucketLinkedList = this.buckets[keyHash];
-    // TODO: complete this method
+    if (!bucketLinkedList.head) return 'not found';
+    delete this.keys[key];
+    let nodeValue = bucketLinkedList.remove(nodeValue => nodeValue.key === key);
+    if (typeof nodeValue === 'object') {
+      return nodeValue.value.value;
+    } else {
+      return nodeValue.value;
+    }
   }
 }
 
