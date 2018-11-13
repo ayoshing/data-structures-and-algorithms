@@ -26,8 +26,6 @@ class HashTable {
     } else {
       node.value.value = value;
     }
-
-    console.log(this.buckets[keyHash])
   }
 
   get(key) {
@@ -52,6 +50,10 @@ class HashTable {
     } else {
       return nodeValue.value;
     }
+  }
+
+  has(key) {
+    return Object.prototype.hasOwnProperty.call(this.keys, key)
   }
 }
 
