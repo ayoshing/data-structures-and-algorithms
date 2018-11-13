@@ -53,7 +53,11 @@ class HashTable {
   }
 
   has(key) {
-    return Object.prototype.hasOwnProperty.call(this.keys, key)
+    return Object.prototype.hasOwnProperty.call(this.keys, key);
+  }
+
+  getKeys() {
+    return Object.keys(this.keys);
   }
 }
 
