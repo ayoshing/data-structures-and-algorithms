@@ -22,7 +22,7 @@ class HashTable {
     let bucketLinkedList = this.buckets[keyHash];
     let node = bucketLinkedList.find(nodeValue => nodeValue.key === key)
     if (!node) {
-      bucketLinkedList.add({key, value});
+      bucketLinkedList.append({key, value});
     } else {
       node.value.value = value;
     }

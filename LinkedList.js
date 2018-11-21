@@ -14,7 +14,7 @@ class LinkedList {
     this.length = 0;
   }
 
-  add(value) {
+  append(value) {
     let node = new Node(value);
     if (!this.head && !this.tail) {
       this.head = node;
