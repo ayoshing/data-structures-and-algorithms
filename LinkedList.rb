@@ -27,4 +27,18 @@ class LinkedList
         end
         self.length += 1
     end
+
+    def prepend(value)
+        node = Node.new(value)
+        if !self.head && !self.tail
+            self.head = node
+            self.tail = node
+        else
+            node.value = value
+            node.next = self.head
+            self.head = node
+        end
+        self.length += 1
+    end
+    
 end
